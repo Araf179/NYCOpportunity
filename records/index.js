@@ -512,13 +512,17 @@ app.use(function(req, res, next) {
 });
 
 app.get('/records', function (req, res) {
-  let response;
+  let response = data;
    const limit = req.query.limit
    const offsetDocumentIdx = req.query.offset 
    const colorFilters = req.query.color
-   response = [data[offsetDocumentIdx - 1]].concat(data)
-   response = response.filter(item => colorFilters.includes(item.color))
-   response = response.slice(0, limit)
+   if(offsetDocumentIdx !== undefined){
+    response = [data[offsetDocumentIdx - 1]].concat(data)
+   }
+    response = response.filter(item => colorFilters.includes(item.color))
+    if(limit !== undefined){
+      response = response.slice(0, limit)
+    }
    res.send(response);
 });
 
