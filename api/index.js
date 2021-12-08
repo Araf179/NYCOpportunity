@@ -33,7 +33,10 @@ const retrieve = async ({ page, colors }) => {
        if (item.disposition === "open" && item.color == "red" || item.color == "blue" || item.color == "blue" ){
             finalObject.open.push({
                 disposition: "open",
-                isPrimary: item.color
+                color: item.color,
+                isPrimary: true,
+                id: item.id
+                
             })
         }
         if(item.disposition === "closed"){
