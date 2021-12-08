@@ -23,7 +23,7 @@ const retrieve = async ({ page, colors }) => {
     for (let color of colors){
         queryStringColors += `&color[]=${color}`
     }
-    const res = await fetch(`http://localhost:3000/records?limit=${limit}&offset=10${queryStringColors}`)
+    const res = await fetch(`http://localhost:3000/records?limit=${limit}${queryStringColors}`)
     const result = await res.json()
     const chunked = chunk(result, 10)
     const paginatedResult = chunked[chunked.length - 1]
